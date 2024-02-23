@@ -12,9 +12,11 @@ config.inactive_pane_hsb = {
     saturation = 0.8,
     brightness = 0.8,
 }
-config.hide_tab_bar_if_only_one_tab = true
+config.hide_tab_bar_if_only_one_tab = false
 config.window_frame = window_frame
 
+config.line_height = 1.2
+config.font_size = 14.0
 
 config.keys = {
     {

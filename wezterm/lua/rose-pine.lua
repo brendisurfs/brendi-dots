@@ -34,9 +34,9 @@ function M.colors()
     return {
         foreground = palette.text,
         background = palette.base,
-        cursor_bg = palette.highlight_high,
+        cursor_bg = palette.text,
         cursor_border = palette.highlight_high,
-        cursor_fg = palette.text,
+        cursor_fg = palette.base,
         selection_bg = '#2a283e',
         selection_fg = palette.text,
 
