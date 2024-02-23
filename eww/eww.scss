@@ -4,10 +4,10 @@
 
 //Global Styles
 .bar {
-    border-radius: 2rem;
-    // background-color: rgba(15, 15, 15, 0.1);
+    // border-radius: 2rem;
+    background-color: rgba(40, 40, 40, 1);
     color: #b0b4bc;
-    padding: 4px;
+    // padding: 4px;
     // margin-left: 10px;
     // margin-right: 10px;
 }
@@ -18,8 +18,8 @@
     border-radius: 2rem;
     padding-left: 10px;
     padding-right: 20px;
-    color: black;
-    background-color: rgba(15, 15, 15, 0.2);
+    color: white;
+    background-color: rgba(15, 15, 15, 1);
 }
 
 .sidestuff slider {
@@ -69,25 +69,25 @@
     border-radius: 2rem;
     padding-left: 10px;
     padding-right: 20px;
-    color: black;
+    color: white;
     background-color: rgba(15, 15, 15, 0.2);
 
 }
 
 .workspaces {
     border-radius: 2rem;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 2px;
+    padding-right: 2px;
     background-color: rgba(15, 15, 15, 0.2);
 }
 
 .workspace-entry {
-    min-width: 20px;
-    color: black;
+    min-width: 2rem;
+    color: white;
 }
 
 .workspace-entry.current {
-    margin: 4px;
+    margin: 6px;
     border-radius: 50%;
     color: black;
     background-color: rgb(255, 255, 255);
