@@ -15,6 +15,12 @@ return {
         lazy = false,
         config = true,
     },
+    -- efm configs
+    {
+        'creativenull/efmls-configs-nvim',
+        version = 'v1.x.x', -- version is optional, but recommended
+        dependencies = { 'neovim/nvim-lspconfig' },
+    },
 
     -- Autocompletion
     {
@@ -92,6 +98,15 @@ return {
                 ensure_installed = { 'rust_analyzer' },
                 handlers = {
                     lsp_zero.default_setup,
+                    gopls = function()
+                        require('lspconfig').gopls.setup {
+                            analyses = {
+                                unusedparams = true,
+                                shadow = true,
+                            },
+                            staticcheck = true,
+                        }
+                    end,
                     pyright = function()
                         require("lspconfig").pyright.setup {
                             settings = {
@@ -111,8 +126,11 @@ return {
                         require("lspconfig").rust_analyzer.setup {
                             settings = {
                                 ["rust-analyzer"] = {
+                                    procMacro = {
+                                        enable = true,
+                                    },
                                     checkOnSave = {
-                                        command = "clippy",
+                                        command = "clippy"
                                     }
                                 }
                             }
@@ -122,8 +140,14 @@ return {
                         require("lspconfig").efm.setup {
                             init_options = { documentFormatting = true },
                             settings = {
-                                rootMarkers = { ".git/" },
+                                rootMarkers = { ".git/", ".cabal" },
                                 languages = {
+                                    go = {
+                                        require('efmls-configs.formatters.golines')
+                                    },
+                                    haskell = {
+                                        { formatCommand = "fourmolu", formatStdin = true }
+                                    },
                                     python = {
                                         { formatCommand = "yapf --quiet", formatStdin = true }
                                     }
