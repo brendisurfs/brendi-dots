@@ -19,23 +19,29 @@
 (defwidget bar []
   (centerbox :orientation "h"
     (workspaces)
-    (music)
+    (timebar)
     (sidestuff)))
 
 ; right side stuff
 (defwidget sidestuff []
   (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
-    (metric :label "🔊"
+    (metric :label "/home/brendan/Downloads/speaker.svg"
             :value volume
             :onchange "amixer -D pulse sset Master {}%")
-    (metric :label ""
+    (metric :label "/home/brendan/Downloads/database.svg"
             :value {EWW_RAM.used_mem_perc}
             :onchange "")
     (metric :label "💾"
             :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
             :onchange "")
-    time))
+    ))
 
+
+(defwidget timebar []
+    (box  :class "timebar"
+        time
+    )
+)
 
 (defwidget music []
   (box :class "music"
@@ -49,7 +55,7 @@
   (box :orientation "h"
        :class "metric"
        :space-evenly false
-    (box :class "label" label)
+    (image :path label :image-width 24 :image-height 24)
     (scale :min 0
            :max 101
            :active {onchange != ""}

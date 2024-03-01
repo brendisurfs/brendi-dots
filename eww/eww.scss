@@ -5,21 +5,21 @@
 //Global Styles
 .bar {
     // border-radius: 2rem;
-    background-color: rgba(40, 40, 40, 1);
+    // background-color: rgba(40, 40, 40, 1);
     color: #b0b4bc;
-    // padding: 4px;
-    // margin-left: 10px;
-    // margin-right: 10px;
+    padding: 4px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 // Styles on classes (see eww.yuck for more information)
 
 .sidestuff {
+    color: white;
     border-radius: 2rem;
     padding-left: 10px;
     padding-right: 20px;
-    color: white;
-    background-color: rgba(15, 15, 15, 1);
+    background-color: rgba(25, 25, 25, 1);
 }
 
 .sidestuff slider {
@@ -29,9 +29,9 @@
 
 .metric scale trough highlight {
     all: unset;
-    background-color: #D35D6E;
     color: #000000;
     border-radius: 10px;
+    background-color: #D35D6E;
 }
 
 .metric scale trough {
@@ -51,18 +51,16 @@
     border-radius: 10px;
 }
 
-.metric scale trough {
-    all: unset;
-    background-color: #4e4e4e;
-    border-radius: 50px;
-    min-height: 3px;
-    min-width: 50px;
-    margin-left: 10px;
-    margin-right: 20px;
-}
-
 .label-ram {
     font-size: large;
+}
+
+.timebar {
+    color: white;
+    border-radius: 2rem;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgba(25, 25, 25, 1);
 }
 
 .music {
@@ -70,7 +68,7 @@
     padding-left: 10px;
     padding-right: 20px;
     color: white;
-    background-color: rgba(15, 15, 15, 0.2);
+    background-color: rgba(25, 25, 25, 1);
 
 }
 
@@ -78,7 +76,7 @@
     border-radius: 2rem;
     padding-left: 2px;
     padding-right: 2px;
-    background-color: rgba(15, 15, 15, 0.2);
+    background-color: rgba(25, 25, 25, 1);
 }
 
 .workspace-entry {
@@ -87,8 +85,8 @@
 }
 
 .workspace-entry.current {
-    margin: 6px;
+    margin: 0.25rem;
     border-radius: 50%;
     color: black;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(225, 225, 225);
 }
