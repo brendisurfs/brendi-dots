@@ -7,6 +7,9 @@ local config = {}
 
 config.colors = colors
 window_frame.font_size = 14.0
+config.font = wezterm.font_with_fallback {
+    'JetBrainsMonoNL',
+}
 
 config.inactive_pane_hsb = {
     saturation = 0.8,
