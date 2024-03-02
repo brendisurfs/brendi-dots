@@ -2,10 +2,25 @@
     all: unset; //Unsets everything so you can style everything from scratch
 }
 
+// Variable Color's
+$background: #1A1B26;
+$foreground: #A9B1D6;
+
+$black: #24283B;
+$gray: #565F89;
+$red: #F7768E;
+$green: #73DACA;
+$yellow: #E0AF68;
+$blue: #7AA2F7;
+$magenta: #BB9AF7;
+$cyan: #7DCFFF;
+$white: $foreground;
+
+
 //Global Styles
 .bar {
     // border-radius: 2rem;
-    // background-color: rgba(40, 40, 40, 1);
+    background-color: rgba(40, 40, 40, 1);
     color: #b0b4bc;
     padding: 4px;
     margin-left: 10px;
@@ -89,4 +104,19 @@
     border-radius: 50%;
     color: black;
     background-color: rgb(225, 225, 225);
+}
+
+
+// Volume bar
+.control {
+    padding: .5rem;
+    font-family: Material Icons;
+    font-size: 1.6em;
+    background-color: $black;
+    border-radius: 5px;
+}
+
+.volbar trough highlight {
+    background-color: black;
+    border-radius: 5px;
 }
