@@ -1,3 +1,4 @@
+;;;;;;;;;;;;;;;;; LISTENERS ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; workspaces
 (deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces")
 (deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace")
@@ -14,12 +15,47 @@
     )
   )
 
+(deflisten music :initial ""
+  "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
+
+(defpoll volume :interval "1s"
+  "scripts/getvol")
+
+(defpoll time :interval "10s"
+  "date '+%H:%M %b %d, %Y'")
+
+;;;;;;;;;;;;;;;;;;;;;;;;WIDGETS;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+;; Volume Widgets ;;
+(defwidget volum []
+	(eventbox :onhover "${EWW_CMD} update volum=true" 		
+			  :onhoverlost "${EWW_CMD} update volum=false"
+      (box      :orientation "v" 	  
+                :space-evenly "false" 
+                :spacing "2"
+      (revealer :transition "slideup" 
+                :reveal volum         
+                :duration "550ms"
+      (scale    :class "volbar" 	  
+                :value current-volume 
+                :orientation "v"      
+                :flipped true 
+                :tooltip "Volume: ${current-volume}%" 
+                :max 101 
+                :min 0 
+                :onchange "amixer -D pulse sset Master {}%" ))
+	(button   :onclick "scripts/popup audio"   :class "volume-icon" ""))))
+(defpoll current-volume :interval "1s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defvar volum false)
+
 
 ; bar widget
 (defwidget bar []
   (centerbox :orientation "h"
     (workspaces)
-    (timebar)
+    (volum)
     (sidestuff)))
 
 ; right side stuff
@@ -36,13 +72,14 @@
             :onchange "")
     ))
 
-
+;; time
 (defwidget timebar []
     (box  :class "timebar"
         time
     )
 )
 
+;; music
 (defwidget music []
   (box :class "music"
        :orientation "h"
@@ -64,14 +101,6 @@
 
 
 
-(deflisten music :initial ""
-  "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
-
-(defpoll volume :interval "1s"
-  "scripts/getvol")
-
-(defpoll time :interval "10s"
-  "date '+%H:%M %b %d, %Y'")
 
 (defwindow bar
   :monitor 0
