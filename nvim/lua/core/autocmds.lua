@@ -13,6 +13,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
 })
 
+-- vim.api.nvim_create_autocmd("BufNewFile,BufRead", {
+--
+-- })
 vim.cmd [[
       autocmd BufNewFile,BufRead *.yuck set syntax=clojure
 ]]

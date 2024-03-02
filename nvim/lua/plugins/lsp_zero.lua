@@ -145,9 +145,6 @@ return {
                                     go = {
                                         require('efmls-configs.formatters.golines')
                                     },
-                                    haskell = {
-                                        { formatCommand = "fourmolu", formatStdin = true }
-                                    },
                                     python = {
                                         { formatCommand = "yapf --quiet", formatStdin = true }
                                     }
