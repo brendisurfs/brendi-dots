@@ -63,6 +63,20 @@
                      (label :text "------------------")))
       (button :onclick "${EWW_CMD} update reveal-pwr=${!reveal-pwr} " "PWR")))
 
+(defvar reveal-vol false)
+(defwidget volbtn [?duration ?transition]
+  (box :class "powerbtn" :orientation "h" :space-evenly false
+      (revealer :reveal reveal-vol
+                :transition  "slideleft"
+                :duration "500ms"
+                (box :class "reveal-pwr" :orientation "h" :space-evenly false
+                      (scale :min 0
+                       :max 101
+                       :active {onchange != ""}
+                       :value value 
+                       :onchange onchange)
+                     (label :text "------------------")))
+      (button :onclick "${EWW_CMD} update reveal-vol=${!reveal-pwr} " "PWR")))
 
 ; right side stuff
 (defwidget sidestuff []
