@@ -78,6 +78,8 @@ return {
             { 'williamboman/mason-lspconfig.nvim' },
         },
         config = function()
+            require("neodev").setup {}
+
             -- This is where all the LSP shenanigans will live
             local lsp_zero = require('lsp-zero')
             lsp_zero.extend_lspconfig()
