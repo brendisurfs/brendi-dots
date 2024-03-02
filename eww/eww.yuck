@@ -4,22 +4,22 @@
 (deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace")
 (defwidget workspaces []
   (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}" :class "workspaces-widget"
-    (box :halign "start" :class "workspaces" :orientation "h" :spacing 10 :space-evenly true
-      (label :text "${workspaces}${current_workspace}" :visible false)
-      (for workspace in workspaces
-          (box :visible "${workspace.windows > 0 ? true : workspace.id == current_workspace ? true : false}"  :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
-            (label :text "${workspace.id}")
+            (box :halign "start" :class "workspaces" :orientation "h" :spacing 10 :space-evenly true
+                 (label :text "${workspaces}${current_workspace}" :visible false)
+                 (for workspace in workspaces
+                   (box :visible "${workspace.windows > 0 ? true : workspace.id == current_workspace ? true : false}"  :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+                        (label :text "${workspace.id}")
+                        )
+                   )
+                 )
             )
-          )
-      )
-    )
   )
 
 (deflisten music :initial ""
   "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
 
 ; (defpoll volume :interval "1s"
-;   "scripts/getvol")
+    ;   "scripts/getvol")
 
 (defpoll time :interval "10s"
   "date '+%H:%M %b %d, %Y'")
@@ -30,76 +30,75 @@
 
 ;; Volume Widgets ;;
 (defwidget volum []
-	(eventbox :onhover "${EWW_CMD} update show_volum=true && ${EWW_CMD} get show_volum" 		
-			  :onhoverlost "${EWW_CMD} update show_volum=false"
-      (box      :orientation "v" 	  
-                :space-evenly "false" 
-                :spacing "2"
-        (revealer :transition "slideup" 
-                  :reveal show_volum
-                  :duration "550ms"
-        (scale    :class "volbar" 	  
-                  :value 0
-                  :orientation "v"      
-                  :flipped true 
-                  :tooltip "Volume: ${current-volume}%" 
-                  :max 101 
-                  :min 0 
-                  :onchange "amixer -D pulse sset Master {}%" ))
-	(button :onclick "scripts/popup audio"   
-            :class "volume-icon" 
-            (image :path "/home/brendan/Downloads/speaker.svg" :image-width 24 :image-height 24)
-            ))))
+  (eventbox :onhover "${EWW_CMD} update show_volum=true && ${EWW_CMD} get show_volum" 		
+            :onhoverlost "${EWW_CMD} update show_volum=false"
+            (box      :orientation "v" 	  
+                 :space-evenly "false" 
+                 :spacing "2"
+                 (revealer :transition "slideup" 
+                           :reveal show_volum
+                           :duration "550ms"
+                           (scale    :class "volbar" 	  
+                                  :value 0
+                                  :orientation "v"      
+                                  :flipped true 
+                                  :tooltip "Volume: ${current-volume}%" 
+                                  :max 101 
+                                  :min 0 
+                                  :onchange "amixer -D pulse sset Master {}%" ))
+                 (button :onclick "scripts/popup audio"   
+                         :class "volume-icon" 
+                         (image :path "/home/brendan/Downloads/speaker.svg" :image-width 24 :image-height 24)
+                         ))))
 (defpoll current-volume :interval "1s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
 (defvar show_volum false)
 
+
 (defvar reveal-pwr false)
+;; floating powerbox 
+(defwidget powerbox []
+  (transform 
+    :translate-y "50%"
+  (box :class "powerbox" 
+       :visible reveal-pwr
+       (label :text "hi im in the powerbox")
+       ))
+  )
+
+;; reveal pwr
 (defwidget powerbutton [?duration ?transition]
   (box :class "powerbtn" :orientation "h" :space-evenly false
-      (revealer :reveal reveal-pwr
-                :transition  "slideleft"
-                :duration "500ms"
-                (box :class "reveal-pwr" :orientation "h" :space-evenly false
-                     (label :text "------------------")))
-      (button :onclick "${EWW_CMD} update reveal-pwr=${!reveal-pwr} " "PWR")))
+       (button :class "pwr-btn" :onclick "${EWW_CMD} update reveal-pwr=${!reveal-pwr} && echo ${reveal-pwr}" "PWR")))
 
+;; reveal vol
 (defvar reveal-vol false)
 (defwidget volbtn [?duration ?transition]
-  (box :class "powerbtn" :orientation "h" :space-evenly false
-      (revealer :reveal reveal-vol
-                :transition  "slideleft"
-                :duration "500ms"
-                (box :class "reveal-pwr" :orientation "h" :space-evenly false
-                      (scale :min 0
-                       :max 101
-                       :active {onchange != ""}
-                       :value value 
-                       :onchange onchange)
-                     (label :text "------------------")))
-      (button :onclick "${EWW_CMD} update reveal-vol=${!reveal-pwr} " "PWR")))
+  (box :class "powerbtn" :orientation "h" :space-evenly false :width 50 :height 50
+       (metric-hover :label "/home/brendan/Downloads/speaker.svg" :value 50 :onchange "echo changing")
+       ))
 
 ; right side stuff
 (defwidget sidestuff []
   (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
-    (hover-module)
-    (metric :label "/home/brendan/Downloads/speaker.svg"
-            :value 0 
-            :onchange "amixer -D pulse sset Master {}%")
-    (metric :label "/home/brendan/Downloads/database.svg"
-            :value {EWW_RAM.used_mem_perc}
-            :onchange "")
-    (metric :label "/home/brendan/Downloads/database.svg"
-            :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
-            :onchange "")
-    (powerbutton)
-    ))
+       (metric :label "/home/brendan/Downloads/speaker.svg"
+               :value 0 
+               :onchange "amixer -D pulse sset Master {}%")
+       (metric :label "/home/brendan/Downloads/database.svg"
+               :value {EWW_RAM.used_mem_perc}
+               :onchange "")
+       (metric :label "/home/brendan/Downloads/database.svg"
+               :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
+               :onchange "")
+       (powerbutton)
+       (powerbox)
+       ))
 
 ;; time
 (defwidget timebar []
-    (box  :class "timebar"
-        time
-    )
-)
+  (box  :class "timebar"
+       time
+       )
+  )
 
 ;; music
 (defwidget music []
@@ -107,27 +106,46 @@
        :orientation "h"
        :space-evenly false
        :halign "center"
-    {music != "" ? "🎵 ${music}" : ""}))
+       {music != "" ? "🎵 ${music}" : ""}))
 
 
 (defwidget metric [label value onchange]
   (box :orientation "h"
        :class "metric"
        :space-evenly false
-    (image :path label :image-width 24 :image-height 24)
-    (scale :min 0
-           :max 101
-           :active {onchange != ""}
-           :value value 
-           :onchange onchange)))
+       (image :path label :image-width 24 :image-height 24)
+       (scale :min 0
+              :max 101
+              :active {onchange != ""}
+              :value value 
+              :onchange onchange)))
+
+;; smol metric
+(defvar reveal-metric false)
+(defwidget metric-hover [label value onchange]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+       (image :path label :image-width 24 :image-height 24)
+       (eventbox  :onhover "${EWW_CMD} update reveal-metric=true"
+                 :onhoverlost "${EWW_CMD} update reveal-metric=false"
+                 (revealer :transition "slideleft" :reveal reveal-metric :duration "500ms"
+                           (box :class "reveal-scale"
+                                (scale :min 0
+                                       :max 101
+                                       :active {onchange != ""}
+                                       :value value 
+                                       :onchange onchange))
+                           )
+                 )))
 
 
 ; bar widget
 (defwidget bar []
   (centerbox :orientation "h"
-    (workspaces)
-    (timebar)
-    (sidestuff)))
+             (workspaces)
+             (timebar)
+             (sidestuff)))
 
 
 (defwindow bar
@@ -147,50 +165,52 @@
 ; NOTE: GTK revealer transitions are kinda stupid
 (defwidget hovered-sign [var]
   (box :space-evenly false
-      (revealer :reveal {!var}
-                :duration "100ms"
-                :transition "slideleft"
-        (children :nth 0)) 
-      (revealer :reveal {var}
-                :duration "100ms"
-                :transition "slideleft"
-        (children :nth 1)))) 
+       (revealer :reveal {!var}
+                 :duration "100ms"
+                 :transition "slideleft"
+                 (children :nth 0))  ;; chooses the right child element when hovered or not
+       (revealer :reveal {var}
+                 :duration "100ms"
+                 :transition "slideleft"
+                 (children :nth 1)))) 
 
 ; Revealer on hover, using children
 (defwidget revealer-on-hover [var varname ?class ?duration ?transition]
   (box :class "${class} revealer-on-hover"
        :orientation "h"
        :space-evenly false
-    (eventbox :class "eventbox"
-              :onhover "eww update ${varname}=true"
-              :onhoverlost "eww update ${varname}=false"
-      (box :space-evenly false
-        (children :nth 0)
-        (revealer :reveal var
-                  :transition {transition ?: "slideright"}
-                  :duration {duration ?: "500ms"}
-          (children :nth 1))
-        (children :nth 2)))))
+       (eventbox :class "eventbox"
+                 :onhover "eww update ${varname}=true"
+                 :onhoverlost "eww update ${varname}=false"
+                 (box :space-evenly false
+                      (children :nth 0)
+                      (revealer :reveal var
+                                :transition {transition ?: "slideright"}
+                                :duration {duration ?: "500ms"}
+                                (children :nth 1))
+                      (children :nth 2)))))
 
 
-(defwidget hover-module [?class]
+(defwidget hover-module [?class label]
   (box :space-evenly false
        :class "hover-module ${class}"
-    (revealer-on-hover :class "hl-on-hover"
-                       :var reveal
-                       :varname "reveal"
-                       :transition "slideleft"
-          
-      (hovered-sign :var reveal 
-        "《"
-        "》")
-      "You have 1 notification"
-      "  ")))
+       (revealer-on-hover :class "hl-on-hover"
+                          :var reveal
+                          :varname "reveal"
+                          :transition "slideleft"
+
+                          (hovered-sign :var reveal 
+                                        "《"
+                                        "》")
+                          (metric :label "/home/brendan/Downloads/speaker.svg"
+                                  :value 0 
+                                  :onchange "amixer -D pulse sset Master {}%")
+                          label)))
 
 (defwidget test-box [?color]
   (box :class "${color} test-box"
-    :orientation "h"
-    :halign "start"
-    :hexpand false
-    :space-evenly false
-    :width 50))
+       :orientation "h"
+       :halign "start"
+       :hexpand false
+       :space-evenly false
+       :width 50))

@@ -120,3 +120,21 @@ $white: $foreground;
     background-color: black;
     border-radius: 5px;
 }
+
+.reveal-vol {
+    margin: 0.25rem;
+}
+
+.powerbtn {
+    border: 1px solid red;
+}
+
+.pwr-btn {
+    border: 1px solid green;
+}
+
+// floating box which will have volume and stuff
+.powerbox {
+    border-radius: 0.25rem;
+    background-color: black;
+}
