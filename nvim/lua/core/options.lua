@@ -22,5 +22,3 @@ set.updatetime = 50
 set.signcolumn = "yes"
 set.termguicolors = true
 set.undodir = vim.fn.expand("~/.vim/undodir")
-
-

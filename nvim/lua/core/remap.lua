@@ -1,23 +1,31 @@
 vim.g.mapleader = " "
 local opts = { noremap = true, silent = true }
-local set = vim.keymap.set
+local map = vim.keymap.set
 
-set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-set("n", "<leader>pv", vim.cmd.Ex)
-set("v", "J", ":m '>+1<CR>gv=gv", opts)
-set("v", "K", ":m '<-2<CR>gv=gv", opts)
-set("n", "gh", vim.lsp.buf.hover, opts)
-set("n", "gd", vim.lsp.buf.definition, opts)
-set("n", "gr", vim.lsp.buf.references, opts)
-set("n", "ga", vim.lsp.buf.code_action, opts)
-set("n", "g[", vim.diagnostic.goto_prev, opts)
-set("n", "g]", vim.diagnostic.goto_next, opts)
-set("n", "<c-]>", vim.lsp.buf.definition, opts)
-set("n", "gD", vim.lsp.buf.implementation, opts)
-set("n", "g0", vim.lsp.buf.document_symbol, opts)
-set("n", "1gD", vim.lsp.buf.type_definition, opts)
-set("n", "gW", vim.lsp.buf.workspace_symbol, opts)
-set("n", "<c-k>", vim.lsp.buf.signature_help, opts)
-set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+map("n", "<leader>rn", vim.lsp.buf.rename, opts)
+map("n", "<leader>pv", vim.cmd.Ex)
+map("v", "J", ":m '>+1<CR>gv=gv", opts)
+map("v", "K", ":m '<-2<CR>gv=gv", opts)
+map("n", "gh", vim.lsp.buf.hover, opts)
+map("n", "gd", vim.lsp.buf.definition, opts)
+map("n", "gr", vim.lsp.buf.references, opts)
+map("n", "ga", vim.lsp.buf.code_action, opts)
+map("n", "g[", vim.diagnostic.goto_prev, opts)
+map("n", "g]", vim.diagnostic.goto_next, opts)
+map("n", "<c-]>", vim.lsp.buf.definition, opts)
+map("n", "gD", vim.lsp.buf.implementation, opts)
+map("n", "g0", vim.lsp.buf.document_symbol, opts)
+map("n", "1gD", vim.lsp.buf.type_definition, opts)
+map("n", "gW", vim.lsp.buf.workspace_symbol, opts)
+map("n", "<c-k>", vim.lsp.buf.signature_help, opts)
+map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 
-set('n', "<C-t>", "<Cmd>Neotree toggle<CR>")
+-- neotree settings
+map('n', "<C-t>", "<Cmd>Neotree toggle<CR>")
+map('n', "<C-f>", "<Cmd>Neotree reveal<CR>")
+
+
+-- barbar settings
+map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
+map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
+map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)

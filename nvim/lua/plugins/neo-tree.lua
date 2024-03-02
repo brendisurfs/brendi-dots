@@ -26,12 +26,15 @@ return {
             enable_diagnostics = true,
             hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
             window = {
-                position = "right",
+                position = "current",
                 width = 40,
                 mapping_options = {
                     noremap = true,
                     nowait = true,
                 },
+                maapings = {
+                    ["<C-f>"] = "reveal", -- reveal the current file in the workdir tree
+                }
             }
 
         }

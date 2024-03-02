@@ -12,7 +12,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         vim.lsp.buf.format({ async = false })
     end,
 })
+vim.api.nvim_create_autocmd({ "BufRead", "BufRead" }, {
+    pattern = { "*.yuck" },
+    callback = function()
+        vim.opt.filetype = "clojure"
+    end
+})
 
-vim.cmd [[
-      autocmd BufNewFile,BufRead *.yuck set syntax=clojure
-]]
+-- vim.cmd [[
+--       autocmd BufNewFile,BufRead *.yuck set syntax=clojure
+-- ]]
