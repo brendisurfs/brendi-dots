@@ -19,8 +19,6 @@ $white: $foreground;
 
 //Global Styles
 .bar {
-    // border-radius: 2rem;
-    background-color: rgba(40, 40, 40, 1);
     color: #b0b4bc;
     padding: 4px;
     margin-left: 10px;
@@ -88,9 +86,8 @@ $white: $foreground;
 }
 
 .workspaces {
+    padding: 0.25rem;
     border-radius: 2rem;
-    // padding-left: 2px;
-    // padding-right: 2px;
     background-color: rgba(25, 25, 25, 1);
 }
 
