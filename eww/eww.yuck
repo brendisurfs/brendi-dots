@@ -7,7 +7,9 @@
             (box :halign "start" :class "workspaces" :orientation "h" :spacing 10 :space-evenly true
                  (label :text "${workspaces}${current_workspace}" :visible false)
                  (for workspace in workspaces
-                   (box :visible "${workspace.windows > 0 ? true : workspace.id == current_workspace ? true : false}"  :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+                   (box :width "25" :height "25"
+                        :visible "${workspace.windows > 0 ? true : workspace.id == current_workspace ? true : false}"  
+                        :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
                         (label :text "${workspace.id}")
                         )
                    )
@@ -148,6 +150,7 @@
              (sidestuff)))
 
 
+;; topbar
 (defwindow bar
   :monitor 0
   :windowtype "dock"
