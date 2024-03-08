@@ -1,3 +1,4 @@
+paru
 swaync
 swww
 waybar
@@ -5,4 +6,5 @@ wezterm
 starship
 fish
 mpd
-
+playerctl
+htop
