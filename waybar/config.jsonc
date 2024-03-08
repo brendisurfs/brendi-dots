@@ -14,13 +14,13 @@
         "custom/media"
     ],
     "modules-right": [
+        "tray",
         "pulseaudio",
         "network",
         "cpu",
         "memory",
         "temperature",
-        "clock",
-        "tray"
+        "clock"
     ],
     // Modules configuration
     "hyprland/workspaces": {
