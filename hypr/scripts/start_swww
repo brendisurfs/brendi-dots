@@ -1,0 +1,3 @@
+#!/usr/bin/sh
+swww init
+swww img /home/brendan/Git/brendi-dots/gradient_2.jpg
