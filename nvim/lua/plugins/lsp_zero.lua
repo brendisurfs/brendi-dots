@@ -144,6 +144,9 @@ return {
                             settings = {
                                 rootMarkers = { ".git/", ".cabal" },
                                 languages = {
+                                    typescriptreact = {
+                                        { formatCommand = "prettierd", formatStdin = true }
+                                    },
                                     go = {
                                         require('efmls-configs.formatters.golines')
                                     },
