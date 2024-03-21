@@ -142,10 +142,10 @@ return {
                         require("lspconfig").efm.setup {
                             init_options = { documentFormatting = true },
                             settings = {
-                                rootMarkers = { ".git/", ".cabal" },
+                                rootMarkers = { ".git/", ".cabal", "node_modules", "go.mod" },
                                 languages = {
                                     typescriptreact = {
-                                        { formatCommand = "prettierd", formatStdin = true }
+                                        { formatCommand = 'biome format --write', formatStdin = true }
                                     },
                                     go = {
                                         require('efmls-configs.formatters.golines')

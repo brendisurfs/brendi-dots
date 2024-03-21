@@ -5,6 +5,12 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     lazy = false,
     config = function()
+        local telescope = require('telescope')
+        telescope.setup {
+            defaults = {
+                file_ignore_patterns = { '.git', '.svn', '.DS_Store', "node_modules" },
+            }
+        }
         local builtin = require('telescope.builtin')
         vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
         vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
