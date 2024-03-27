@@ -21,4 +21,5 @@ set.expandtab = true
 set.updatetime = 50
 set.signcolumn = "yes"
 set.termguicolors = true
+set.cursorline = true
 set.undodir = vim.fn.expand("~/.vim/undodir")
