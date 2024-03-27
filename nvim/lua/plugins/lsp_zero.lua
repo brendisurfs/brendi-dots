@@ -139,28 +139,30 @@ return {
                         }
                     end,
 
-                    -- efm = function()
-                    --     local goimports = require('efmls-configs.formatters.goimports')
-                    --     local golines = require('efmls-configs.formatters.golines')
-                    --     require("lspconfig").efm.setup {
-                    --         init_options = { documentFormatting = true },
-                    --         settings = {
-                    --             rootMarkers = { ".git/", ".cabal", "node_modules", "go.mod" },
-                    --             languages = {
-                    --                 typescriptreact = {
-                    --                     require('efmls-configs.formatters.biome')
-                    --                 },
-                    --                 go = {
-                    --                     require("efmls-configs.formatters.goimports"),
-                    --                     require('efmls-configs.formatters.golines')
-                    --                 },
-                    --                 python = {
-                    --                     { formatCommand = "yapf --quiet", formatStdin = true }
-                    --                 }
-                    --             }
-                    --         }
-                    --     }
-                    -- end,
+                    efm = function()
+                        local goimports = require('efmls-configs.formatters.goimports')
+                        local golines = require('efmls-configs.formatters.golines')
+                        local biome = require('efmls-configs.formatters.biome')
+
+                        require("lspconfig").efm.setup {
+                            init_options = { documentFormatting = true },
+                            settings = {
+                                rootMarkers = { ".git/", ".cabal", "node_modules", "go.mod" },
+                                languages = {
+                                    typescriptreact = {
+                                        biome,
+                                    },
+                                    go = {
+                                        golines,
+                                        goimports,
+                                    },
+                                    python = {
+                                        { formatCommand = "yapf --quiet", formatStdin = true }
+                                    }
+                                }
+                            }
+                        }
+                    end,
                     lua_ls = function()
                         -- (Optional) Configure lua language server for neovim
                         local lua_opts = lsp_zero.nvim_lua_ls()
