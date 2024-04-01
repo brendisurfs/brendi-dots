@@ -1,18 +1,18 @@
-local lsp_fmt_group = vim.api.nvim_create_augroup("LspFormattingGroup", {})
+-- local lsp_fmt_group = vim.api.nvim_create_augroup("LspFormattingGroup", {})
 
 -- efm formatter
-vim.api.nvim_create_autocmd("BufWritePre", {
-    group = lsp_fmt_group,
-    callback = function(ev)
-        local efm = vim.lsp.get_active_clients({ name = "efm", bufnr = ev.buf })
-
-        if vim.tbl_isempty(efm) then
-            return
-        end
-
-        vim.lsp.buf.format({ async = false })
-    end,
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--     group = lsp_fmt_group,
+--     callback = function(ev)
+--         local efm = vim.lsp.get_active_clients({ name = "efm", bufnr = ev.buf })
+--
+--         if vim.tbl_isempty(efm) then
+--             return
+--         end
+--
+--         vim.lsp.buf.format({ async = false })
+--     end,
+-- })
 -- conform formatter
 -- vim.api.nvim_create_autocmd("BufWritePre", {
 --     pattern = "*",
@@ -22,10 +22,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- })
 
 vim.api.nvim_create_autocmd({ "BufRead" }, {
-    pattern = { "*.yuck" },
-    callback = function()
-        vim.opt.filetype = "clojure"
-    end,
+	pattern = { "*.yuck" },
+	callback = function()
+		vim.opt.filetype = "clojure"
+	end,
 })
 
 -- vim.cmd [[
@@ -33,10 +33,10 @@ vim.api.nvim_create_autocmd({ "BufRead" }, {
 -- ]]
 --
 vim.api.nvim_create_autocmd("TextYankPost", {
-    group = vim.api.nvim_create_augroup("highlight_yank", {}),
-    desc = "Hightlight selection on yank",
-    pattern = "*",
-    callback = function()
-        vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150 })
-    end,
+	group = vim.api.nvim_create_augroup("highlight_yank", {}),
+	desc = "Hightlight selection on yank",
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150 })
+	end,
 })
