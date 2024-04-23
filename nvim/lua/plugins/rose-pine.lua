@@ -1,10 +1,12 @@
 return {
-    'rose-pine/neovim',
-    config = function()
-        require("rose-pine").setup {
-            disable_background = true,
-            dim_nc_background = true,
-        }
-        vim.cmd('colorscheme rose-pine')
-    end
+	"rose-pine/neovim",
+	config = function()
+		require("rose-pine").setup({
+			disable_background = false,
+			styles = {
+				italic = false,
+			},
+		})
+		vim.cmd("colorscheme rose-pine")
+	end,
 }
