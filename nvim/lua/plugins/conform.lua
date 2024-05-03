@@ -13,7 +13,9 @@ return {
 				python = { "black" },
 				-- Use a sub-list to run only the first available formatter
 				javascript = { "biome" },
+				typescript = { "biome" },
 				go = { "gofmt", "goimports" },
+				zig = { "zls" },
 			},
 		})
 	end,

@@ -99,6 +99,9 @@ return {
 				ensure_installed = { "rust_analyzer" },
 				handlers = {
 					lsp_zero.default_setup,
+					zls = function()
+						require("lspconfig").zls.setup({})
+					end,
 					gopls = function()
 						require("lspconfig").gopls.setup({
 							analyses = {
