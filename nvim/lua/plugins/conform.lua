@@ -14,7 +14,7 @@ return {
 				-- Use a sub-list to run only the first available formatter
 				javascript = { "biome" },
 				typescript = { "biome" },
-				go = { "gofmt", "goimports" },
+				go = { "gofmt", "goimports", "golines" },
 				zig = { "zls" },
 			},
 		})
