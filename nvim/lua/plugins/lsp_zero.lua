@@ -114,6 +114,9 @@ return {
 					htmx = function()
 						require("lspconfig").htmx.setup({})
 					end,
+					hls = function()
+						require("lspconfig").hls.setup({})
+					end,
 					pyright = function()
 						require("lspconfig").pyright.setup({
 							settings = {

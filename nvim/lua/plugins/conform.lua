@@ -12,6 +12,7 @@ return {
 				-- Conform will run multiple formatters sequentially
 				python = { "black" },
 				-- Use a sub-list to run only the first available formatter
+				haskell = { "fourmolu" },
 				javascript = { "biome" },
 				typescript = { "biome" },
 				go = { "gofmt", "goimports", "golines" },
