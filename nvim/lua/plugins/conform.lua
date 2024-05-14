@@ -15,7 +15,7 @@ return {
 				haskell = { "fourmolu" },
 				javascript = { "biome" },
 				typescript = { "biome" },
-				go = { "gofmt", "goimports", "golines" },
+				go = { "golines", "goimports" },
 				zig = { "zls" },
 			},
 		})
