@@ -16,6 +16,7 @@ return {
 				javascript = { "biome" },
 				typescript = { "biome" },
 				typescriptreact = { "biome" },
+				rust = { "rustfmt" },
 				go = { "golines", "goimports" },
 				zig = { "zls" },
 			},
