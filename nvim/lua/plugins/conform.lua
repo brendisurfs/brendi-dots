@@ -5,7 +5,7 @@ return {
 			format_on_save = {
 				-- These options will be passed to conform.format()
 				timeout_ms = 500,
-				lsp_fallback = false,
+				lsp_fallback = true,
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
@@ -13,9 +13,9 @@ return {
 				python = { "black" },
 				-- Use a sub-list to run only the first available formatter
 				haskell = { "fourmolu" },
-				svelte = { "biome" },
 				javascript = { "biome" },
 				typescript = { "biome" },
+				svelte = { "prettierd" },
 				typescriptreact = { "biome" },
 				rust = { "rustfmt" },
 				go = { "golines", "goimports" },

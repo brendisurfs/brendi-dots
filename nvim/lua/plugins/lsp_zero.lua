@@ -154,6 +154,16 @@ return {
 					end,
 
 					efm = function()
+						local prettier = {
+							formatCommand = 'prettierd "${INPUT}"',
+							formatStdin = true,
+							env = {
+								string.format(
+									"PRETTIERD_DEFAULT_CONFIG=%s",
+									vim.fn.expand("~/.config/nvim/utils/linter-config/.prettierrc.json")
+								),
+							},
+						}
 						local goimports = require("efmls-configs.formatters.goimports")
 						local golines = require("efmls-configs.formatters.golines")
 						local stylua = require("efmls-configs.formatters.stylua")
@@ -162,15 +172,19 @@ return {
 						require("lspconfig").efm.setup({
 							init_options = { documentFormatting = true },
 							settings = {
-								rootMarkers = { "*.go", ".git/", ".cabal", "node_modules", "go.mod", "package.json" },
+								rootMarkers = {
+									"*.go",
+									".git/",
+									".cabal",
+									"node_modules",
+									"go.mod",
+									"package.json",
+								},
 								languages = {
 									lua = { stylua },
-									svelte = { biome },
+									svelte = { prettier },
 									typescriptreact = { biome },
-									go = {
-										golines,
-										goimports,
-									},
+									go = { golines, goimports },
 									python = {
 										{ formatCommand = "yapf --quiet", formatStdin = true },
 									},
