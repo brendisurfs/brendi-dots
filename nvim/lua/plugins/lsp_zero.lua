@@ -121,6 +121,7 @@ return {
 						require("lspconfig").pyright.setup({
 							settings = {
 								pyright = {
+									venvPath = { "/Users/brendi/Library/Caches/pypoetry/virtualenvs" },
 									autoSearchPaths = true,
 									python = {
 										analysis = {
@@ -136,6 +137,11 @@ return {
 						require("lspconfig").rust_analyzer.setup({
 							settings = {
 								["rust-analyzer"] = {
+									cargo = {
+										unsetTest = {
+											"time",
+										},
+									},
 									procMacro = {
 										enable = true,
 									},
@@ -159,9 +165,8 @@ return {
 								rootMarkers = { "*.go", ".git/", ".cabal", "node_modules", "go.mod", "package.json" },
 								languages = {
 									lua = { stylua },
-									typescriptreact = {
-										biome,
-									},
+									svelte = { biome },
+									typescriptreact = { biome },
 									go = {
 										golines,
 										goimports,

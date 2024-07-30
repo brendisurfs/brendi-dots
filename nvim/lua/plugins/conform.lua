@@ -13,6 +13,7 @@ return {
 				python = { "black" },
 				-- Use a sub-list to run only the first available formatter
 				haskell = { "fourmolu" },
+				svelte = { "biome" },
 				javascript = { "biome" },
 				typescript = { "biome" },
 				typescriptreact = { "biome" },
