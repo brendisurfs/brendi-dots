@@ -25,9 +25,16 @@ map("n", "<C-t>", "<Cmd>Neotree toggle<CR>")
 map("n", "<C-f>", "<Cmd>Neotree reveal<CR>")
 
 -- barbar settings
-map("n", "<A-,>", "<Cmd>BufferPrevious<CR>", opts)
-map("n", "<A-.>", "<Cmd>BufferNext<CR>", opts)
-map("n", "<A-c>", "<Cmd>BufferClose<CR>", opts)
+-- map("n", "<A-,>", "<Cmd>BufferPrevious<CR>", opts)
+-- map("n", "<A-.>", "<Cmd>BufferNext<CR>", opts)
+-- map("n", "<A-c>", "<Cmd>BufferClose<CR>", opts)
+
+-- bufferline setting
+map("n", "<A-,>", "<Cmd>BufferLineCyclePrev<CR>", opts)
+map("n", "<A-.>", "<Cmd>BufferLineCycleNext<CR>", opts)
+map("n", "<A-c>", ":bp <BAR> bd #<CR>", opts)
+-- nmap <Space>q :bp <BAR> bd #<CR>
+-- map("n", "<A-c>", "<Cmd>BufferLinePickClose<CR>", opts)
 
 -- no neck pain
 map("n", "<leader>np", "<Cmd>NoNeckPain<CR>", opts)
