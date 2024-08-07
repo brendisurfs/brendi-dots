@@ -183,6 +183,7 @@ return {
 								},
 								languages = {
 									lua = { stylua },
+									json = { biome },
 									svelte = { prettier },
 									typescript = { prettier },
 									typescriptreact = { biome },

@@ -15,7 +15,7 @@ return {
 				haskell = { "fourmolu" },
 				javascript = { "biome" },
 				typescript = { "biome" },
-				svelte = { "prettier" },
+				svelte = { "prettierd" },
 				rust = { "rustfmt" },
 				typescriptreact = { "biome" },
 				go = { "golines", "goimports" },
