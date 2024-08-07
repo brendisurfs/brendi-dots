@@ -164,6 +164,7 @@ return {
 								),
 							},
 						}
+						local golint_ci = require("efmls-configs.linters.golint")
 						local goimports = require("efmls-configs.formatters.goimports")
 						local golines = require("efmls-configs.formatters.golines")
 						local stylua = require("efmls-configs.formatters.stylua")
@@ -176,13 +177,14 @@ return {
 									"*.go",
 									".git/",
 									".cabal",
-									"node_modules",
 									"go.mod",
+									"node_modules",
 									"package.json",
 								},
 								languages = {
 									lua = { stylua },
 									svelte = { prettier },
+									typescript = { prettier },
 									typescriptreact = { biome },
 									go = { golines, goimports },
 									python = {
