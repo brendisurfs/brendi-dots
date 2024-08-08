@@ -40,9 +40,9 @@ return {
 
 			cmp.setup({
 				enabled = true,
-				completion = {
-					completeopt = "menu,menuone,noinsert",
-				},
+				-- This makes sure that we dont select the middle of the function
+				preselect = cmp.PreselectMode.None,
+				completion = { completeopt = "menu,menuone,noinsert" },
 				mapping = cmp.mapping.preset.insert({
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-u>"] = cmp.mapping.scroll_docs(-4),
